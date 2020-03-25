@@ -3,7 +3,7 @@ layout: post
 title: Timer and Ticker
 description: >
   An Introduction to Timer and Ticker
-image: /assets/img/blog/example-content-iii.jpg
+image: /assets/img/timer.jpg
 noindex: true
 ---
 
