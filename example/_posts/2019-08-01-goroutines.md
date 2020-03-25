@@ -3,7 +3,7 @@ layout: post
 title: Goroutines
 description: >
   An Introduction to Goroutines.
-image: /assets/img/wp.jpg
+image: /assets/img/goroutine.png
 noindex: true
 ---
 
