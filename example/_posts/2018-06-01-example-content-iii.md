@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Example Content III
+title: Goroutines
 description: >
   A page showing Hydejack-specific markdown content.
 image: /assets/img/blog/example-content-iii.jpg
