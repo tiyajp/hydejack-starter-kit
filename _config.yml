@@ -25,14 +25,11 @@ title:                 Hello,
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
 description:           >
-  "Best Jekyll Theme by a Mile".
-  **Hydejack** is your presence on the web, featuring a blog, portfolio, and resume.
-  Open `_config.yml` to edit this text.
+  Backend Engineer at Actiotech LLP
 
 # A shorter description for the sidebar.
 tagline:               >
-  "Best Jekyll Theme by a Mile".
-  Open `_config.yml` to edit this text.
+  Documenting the lessons learned
 
 # A list of keywords for your blog
 keywords:              []
@@ -44,8 +41,8 @@ logo:                  /assets/icons/icon.png
 
 # This should be the same author as first entry in `_data/authors.yml`.
 author:
-  name:                <firstname> <lastname>
-  email:               <mail@domain.tld>
+  name:               Tiya Jose
+  email:               mariyatiyajose@gmail.com
   # Used by `jekyll-seo-tag`:
   # twitter:             <username>
 
