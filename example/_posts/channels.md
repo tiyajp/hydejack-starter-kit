@@ -1,0 +1,172 @@
+---
+layout: post
+title: Go: Channels
+description: >
+  Introduction to Channels
+image: /assets/img/blog/example-content-ii.jpg
+noindex: true
+---
+
+#### # Channels
+
+Definition of channels in the Go Tour is as follows:
+
+> Channels are a typed conduit through which you can send and receive values
+> with the channel operator, <-. 
+>By default, sends and receives block until the other side is ready.This allows goroutines to synchronize without explicit locks or condition variables.
+
+#####  Buffered Channels
+Definition of buffered channels in the Go Tour is as follows:
+
+>Channels can be buffered. Provide the buffer length as the second argument to make to initialize a buffered channel:
+>ch := make(chan int, 100)
+>Sends to a buffered channel block only when the buffer is full. Receives block when the buffer is empty.
+
+My questions:
+
+- How channels and goroutines are related?Why do we need goroutines for using channel?
+>Channels are the pipes that connect concurrent goroutines. You can send values into channels from one goroutine and receive those values into another goroutine.
+> Refer: https://gobyexample.com/channels
+- What is the deadlock of channel? When does this happen?
+> A deadlock happens when a group of goroutines are waiting for each other and none of them is able to proceed.
+> By default, sends and receives block until the other side is ready.
+
+Note: 
+>Main func can spawn other goroutines, but "main" itself is one groutine.
+
+Deadlock: No reciever
+#1
+```
+package main
+
+func main() {
+	messages := make(chan string)
+
+	// Do nothing spawned goroutine
+	go func() {}()
+
+	// A goroutine ( main groutine ) trying to send message to channel
+	// But no other goroutine runnning
+	// And channel has no buffers
+	// So it raises deadlock error
+	messages <- "Sending" // fatal error: all goroutines are asleep - deadlock!
+}
+```
+#2
+```
+package main
+
+func main() {
+        ch := make(chan int)
+        ch <- 1 // stuck on the channel send operation that waits forever for someone to   // read the value. No other goroutine running, only "main" goroutine is running 
+        // fatal error: all goroutines are asleep - deadlock!
+        fmt.Println(<-ch) 
+}
+```
+Deadlock: No sender
+
+```
+package main
+
+func main() {
+	messages := make(chan string)
+
+	// Do nothing spawned goroutine
+	go func() {}()
+
+	// A goroutine ( main groutine ) trying to receive message from channel
+	// But channel has no messages, it is empty.
+	// And no other goroutine running. ( means no "Sender" exists )
+	// So channel will be deadlocking
+	<-messages // fatal error: all goroutines are asleep - deadlock!
+}
+```
+- Why there is no deadlock in buffered channels even if we dont use goroutines?
+> By default channels are unbuffered, meaning that they will only accept sends (chan <-) if there is a corresponding receive (<- chan) ready to receive the sent value. Buffered channels accept a limited number of values without a corresponding receiver for those values.
+
+```
+package main
+
+import "fmt"
+
+func main() {
+	ch := make(chan int, 2)
+	ch <- 1
+	ch <- 2
+	// Because this channel is buffered, we can send these values
+	// into the channel without a corresponding concurrent receive (goroutine)
+    // Later we can receive these two values as usual
+	fmt.Println(<-ch)
+	fmt.Println(<-ch)
+}
+\\ Output
+\\ 1
+\\ 2
+```
+#####  Range and Close
+
+>A sender can close a channel to indicate that no more values will be sent. Receivers can test whether a channel has been closed by assigning a second parameter to the receive expression: after
+v, ok := <-ch
+>ok is false if there are no more values to receive and the channel is closed.
+>The loop for i := range c receives values from the channel repeatedly until it is closed.
+##### Select
+
+>The select statement lets a goroutine wait on multiple channel operations.
+>A select blocks until one of its cases can run, then it executes that case. It chooses one at random if multiple are ready.
+##### Channel Synchronization
+Question: Why does this program exit without starting the worker goroutine? How to make 
+it work properly?
+```
+package main
+
+import (
+    "fmt"
+    "time"
+)
+
+func worker(done chan bool) {
+    fmt.Print("working...")
+    fmt.Println("done")
+    done <- true
+}
+
+func main() {
+    done := make(chan bool, 1)
+    go worker(done)
+    fmt.Println("Exiting from main()")
+    // Output
+    // Exiting from main()
+}
+```
+>In the above case, the main goroutine spawns another goroutine of worker function. Hence when we execute the above program, there are two goroutines running concurrently.Goroutines are scheduled cooperatively. Hence when the main goroutine starts executing, go scheduler do not pass control to the worker goroutine until the main goroutine does not execute completely. Unfortunately, when the main goroutine is done with execution, the program terminates immediately and scheduler did not get time to schedule worker goroutine.
+
+Solution:
+```
+package main
+
+import (
+    "fmt"
+    "time"
+)
+
+func worker(done chan bool) {
+    fmt.Print("working...")
+    fmt.Println("done")
+    done <- true  
+}
+
+func main() {
+
+    done := make(chan bool, 1)
+    go worker(done)
+    // time.Sleep(10 * time.Millisecond)
+    // Either use time.Sleep or <-done
+    <-done
+     fmt.Println("Exiting from main()")
+}
+```
+Solution:
+- Using time.Sleep()
+Before main goroutine pass control to the last line of code, we pass control to worker goroutine using time.Sleep(10 * time.Millisecond) call. In this case, the main goroutine sleeps for 10 milli-seconds and won’t be scheduled again for another 10 milliseconds.
+- <-done: Channel Synchronisation
+We can use channels to synchronize execution across goroutines. Using a blocking receive(<-done) will wait for the worker goroutine to finish.
