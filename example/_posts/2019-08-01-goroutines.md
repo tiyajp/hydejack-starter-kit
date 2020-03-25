@@ -2,8 +2,8 @@
 layout: post
 title: Goroutines
 description: >
-  A page showing Hydejack-specific markdown content.
-image: /assets/img/blog/example-content-iii.jpg
+  An Introduction to Goroutines.
+image: /assets/img/wp.jpg
 noindex: true
 ---
 
@@ -29,7 +29,7 @@ You can also start a goroutine for an anonymous function call.
 ```
 go func(msg string) {
         fmt.Println(msg)
-    }("going")
+}("going")
 ```
 
 Two important properties of goroutine:
