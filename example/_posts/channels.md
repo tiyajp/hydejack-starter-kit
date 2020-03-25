@@ -3,7 +3,6 @@ layout: post
 title: Go: Channels
 description: >
   Introduction to Channels
-image: /assets/img/blog/example-content-ii.jpg
 noindex: true
 ---
 
@@ -165,7 +164,7 @@ func main() {
      fmt.Println("Exiting from main()")
 }
 ```
-Solution:
+
 - Using time.Sleep()
 Before main goroutine pass control to the last line of code, we pass control to worker goroutine using time.Sleep(10 * time.Millisecond) call. In this case, the main goroutine sleeps for 10 milli-seconds and won’t be scheduled again for another 10 milliseconds.
 - <-done: Channel Synchronisation
