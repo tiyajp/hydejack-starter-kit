@@ -22,7 +22,7 @@ author1:
   # Comment/uncommet to show/hide. Rearrange to change the order in which they appear.
   social:
    # twitter:         jekyllrb
-   # github:            tiyajp
+    github:            ?tab=repositories
     # download:        <url>
     # email:           <mail@domain.tld>
     # rss:             https://<url>/feed.xml
