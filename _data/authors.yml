@@ -22,7 +22,7 @@ author1:
   # Social media icons in sidebar.
   # Comment/uncommet to show/hide. Rearrange to change the order in which they appear.
   social:
-    github:          https://github.com/tiyajp
+    #github:          https://github.com/tiyajp
     # download:        <url>
     # email:           <mail@domain.tld>
     # rss:             https://<url>/feed.xml
@@ -49,13 +49,13 @@ author1:
     # pinterest:       <username>
     # foursquare:      <number>
     # yelp:            <string>
-     stackoverflow:   https://stackoverflow.com/users/7768287/tiya-jose?tab=profile
+     #stackoverflow:   https://stackoverflow.com/users/7768287/tiya-jose?tab=profile
     # npm:             <username>
     # hackernews:      <username>
     # trello:          <firstnamelastname>
-     linkedin:        https://www.linkedin.com/in/tiya-jose-16222712a/
+     #linkedin:        https://www.linkedin.com/in/tiya-jose-16222712a/
     # xing:            <firstname_lastname_counter>
-     blogger:         https://secludedconstellations.wordpress.com/
+    # blogger:         https://secludedconstellations.wordpress.com/
     # delicious:       <username>
     # stumbleupon:     <username>
     # paypal:          <username>
