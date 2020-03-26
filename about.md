@@ -9,8 +9,6 @@ title: Hi, I'm Tiya Jose
 # Write a short (~150 characters) description of each blog post.
 # This description is used to preview the page on search engines, social media, etc.
 description: >
- I'm an inquisitive person pursuing my career as a Backend Engineer in a startup.I love experimenting and find myself in harmony with the startup culture.I'm curious; curious about how cleverly this world is crafted and the immense power humans possess, which could change the world.Boundless curiosity, creativity, combined with my zeal to take ventures, lead me to learn new skills every day and broaden my wisdom. 
-Something is wrong
-
+ I'm an inquisitive person pursuing my career as a Backend Engineer in a startup.I love experimenting and find myself in harmony with the startup culture.I'm curious; curious about how cleverly this world is crafted and the immense power humans possess, which could change the world.Boundless curiosity, creativity, combined with my zeal to take ventures, lead me to learn new skills every day and broaden my wisdom. Something is wrong
 ---
 
