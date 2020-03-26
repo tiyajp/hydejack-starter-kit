@@ -22,6 +22,6 @@ image: /assets/img/wall.jpg
 
 I'm an inquisitive person pursuing my career as a Backend Engineer in a startup.I love experimenting and find myself in harmony with the startup culture.
 
->I'm curious; curious about how cleverly this world is crafted and the immense power humans possess, which could change the world.
+*I'm curious; curious about how cleverly this world is crafted and the immense power humans possess, which could change the world*
 
-Boundless curiosity, creativity, combined with my zeal to take ventures, lead me to learn new skills every day and broaden my wisdom.
+Boundless curiosity, creativity, combined with my zeal to take ventures, lead me to learn new skills every day and broaden my wisdom.I'll always be passionate about doing something extraordinary in my life, and nurture the likelihood of being a person I never thought I would be. 
