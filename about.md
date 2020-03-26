@@ -18,7 +18,7 @@ hide_description: true
 # TODO
 image: /assets/img/wall.jpg
 ---
-![w3m Screenshot](assets/img/wall.jpg)
+
 
 I'm an inquisitive person pursuing my career as a Backend Engineer in a startup.I love experimenting and find myself in harmony with the startup culture.
 
