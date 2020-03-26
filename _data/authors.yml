@@ -22,7 +22,7 @@ author1:
   # Comment/uncommet to show/hide. Rearrange to change the order in which they appear.
   social:
    # twitter:         jekyllrb
-   # github:          tiyajp
+    github:          
     # download:        <url>
     # email:           <mail@domain.tld>
     # rss:             https://<url>/feed.xml
@@ -53,7 +53,7 @@ author1:
     # npm:             <username>
     # hackernews:      <username>
     # trello:          <firstnamelastname>
-     linkedin:        tiya-jose
+     linkedin:        tiya-jose-16222712a
     # xing:            <firstname_lastname_counter>
     # blogger:         <number>
     # delicious:       <username>
