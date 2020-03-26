@@ -1,8 +1,9 @@
 ---
+
 layout: about
 title: Hi, I'm Tiya Jose.
-description: >
-image: /assets/img/wall.jpg
+description: > Hi
+
 ---
 
 ### Hiya
