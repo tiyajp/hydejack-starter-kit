@@ -3,17 +3,17 @@
 # You can change `author1` to your shortname.
 author1:
   # Replace <...> with your own (remove the < >)
-  name:              <firstname> <lastname>
-  email:             <mail@domain.tld>
+  name:              Tiya Jose
+  email:             mariyatiyajose@gmail.com
 
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
-  about:             |
+  about:             
     This blog characterizes my love for writing and the way I try to progress my enthusiasm in blogging.For me, writing is an exploration, we start from nothing and learn as we go.
 
   # This photo will be used in the about section.
   picture:
-    path:            https://placehold.it/128x128
+    path:            /assets/img/wall.jpg
     # srcset is optional, but can be used to provide higher res versions for retina displays
     srcset:
       1x:            https://placehold.it/128x128
@@ -22,8 +22,7 @@ author1:
   # Social media icons in sidebar.
   # Comment/uncommet to show/hide. Rearrange to change the order in which they appear.
   social:
-    twitter:         jekyllrb
-    github:          qwtel/hydejack
+    github:          https://github.com/tiyajp
     # download:        <url>
     # email:           <mail@domain.tld>
     # rss:             https://<url>/feed.xml
@@ -50,13 +49,13 @@ author1:
     # pinterest:       <username>
     # foursquare:      <number>
     # yelp:            <string>
-    # stackoverflow:   <number/username>
+     stackoverflow:   https://stackoverflow.com/users/7768287/tiya-jose?tab=profile
     # npm:             <username>
     # hackernews:      <username>
     # trello:          <firstnamelastname>
-    # linkedin:        <firstname-lastname-string>
+     linkedin:        https://www.linkedin.com/in/tiya-jose-16222712a/
     # xing:            <firstname_lastname_counter>
-    # blogger:         <number>
+     blogger:         https://secludedconstellations.wordpress.com/
     # delicious:       <username>
     # stumbleupon:     <username>
     # paypal:          <username>
