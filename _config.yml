@@ -48,7 +48,7 @@ author:
 
 # Add links to the sidebar.
 menu:
-  - title:             Blog
+  - title:            My little Go Book
     url:               /example/
  # - title:             Documentation
  #  url:               https://hydejack.com/docs/
