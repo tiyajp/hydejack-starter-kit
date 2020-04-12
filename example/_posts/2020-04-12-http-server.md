@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: HTTP Server
@@ -7,6 +6,7 @@ description: >
 image: /assets/img/http.png
 noindex: true
 ---
+
 #### HTTP Server
 Before going to http Server, Let's understand what a server is.
 
