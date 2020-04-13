@@ -9,19 +9,20 @@ noindex: true
 
 ![](assets/img/server.png)
 
+
 #### HTTP Server
 Before going to http Server, Let's understand what a server is.
 
 Web Server
  > "Web server" can refer to hardware or software, or both of them working together.
  
->-On the hardware side, a web server is a computer that stores web server software and a website's component files (e.g. HTML documents, images, CSS stylesheets, and JavaScript files). It is connected to the Internet and supports physical data interchange with other devices connected to the web.
+1) On the hardware side, a web server is a computer that stores web server software and a website's component files (e.g. HTML documents, images, CSS stylesheets, and JavaScript files). It is connected to the Internet and supports physical data interchange with other devices connected to the web.
 
->-On the software side, a web server includes several parts that control how web users access hosted files, at minimum an HTTP server. An HTTP server is a piece of software that understands URLs (web addresses) and HTTP (the protocol your browser uses to view webpages). It can be accessed through the domain names (like mozilla.org) of websites it stores, and delivers their content to the end-user's device. This intercommunication is done using Hypertext Transfer Protocol (HTTP).
+2) On the software side, a web server includes several parts that control how web users access hosted files, at minimum an HTTP server. An HTTP server is a piece of software that understands URLs (web addresses) and HTTP (the protocol your browser uses to view webpages). It can be accessed through the domain names (like mozilla.org) of websites it stores, and delivers their content to the end-user's device. This intercommunication is done using Hypertext Transfer Protocol (HTTP).
 
 > At the most basic level, whenever a browser needs a file which is hosted on a web server, the browser requests the file via HTTP. When the request reaches the correct web server (hardware), the HTTP server (software) accepts request, finds the requested document (if it doesn't then a 404 response is returned), and sends it back to the browser, also through HTTP.
 
-#### HTTP Server
+### HTTP Server
 
 Writing a basic HTTP server is easy using the net/http package.
 A fundamental concept in net/http servers is handlers. A handler is an object implementing the http.Handler interface. 
@@ -48,7 +49,7 @@ A basic understanding of the following concepts are neccessary for Web Server Cr
 * func ListenAndServe(addr string, handler Handler) error
 * type HandlerFunc
    * func (f HandlerFunc) ServeHTTP(w ResponseWriter, r *Request)
-##### type Handler
+#### type Handler
 A Handler responds to an HTTP request.
 ```
 type Handler interface {
@@ -56,21 +57,22 @@ type Handler interface {
 }
 ```
 Handlers are responsible for writing response headers and bodies. Almost any object can be a handler, so long as it satisfies the http.Handler interface. 
-##### type ServeMux
+#### type ServeMux
 ServeMux is an HTTP request multiplexer.A mux is used for routing. It matches the URL of each incoming request against a list of registered patterns and calls the handler for the pattern that most closely matches the URL.
 ServeMux also takes care of sanitizing the URL request path and the Host header, stripping the port number and redirecting any request containing . or .. elements or repeated slashes to an equivalent, cleaner URL.
-##### func NewServeMux
+#### func NewServeMux
+NewServeMux allocates and returns a new ServeMux.
 
 ```
 func NewServeMux() *ServeMux
 ```
-NewServeMux allocates and returns a new ServeMux.
-##### func (*ServeMux) Handle
+#### func (*ServeMux) Handle
+Handle registers the handler for the given pattern in the DefaultServeMux. If a handler already exists for pattern, Handle panics.
+We can simply use a struct to provide the implementation. 
 ```
 func (mux *ServeMux) Handle(pattern string, handler Handler)
 ```
-Handle registers the handler for the given pattern in the DefaultServeMux. If a handler already exists for pattern, Handle panics.
-We can simply use a struct to provide the implementation. 
+
 
 For example:
 ```
@@ -84,11 +86,12 @@ mux := http.NewServeMux()
 mux.Handle("/", home{})
 ```
 
-##### func (*ServeMux) HandleFunc
+#### func (*ServeMux) HandleFunc
+HandleFunc registers the handler function for the given pattern in the DefaultServeMux.Handler func has two parameters. One to handle the response (http.ResponseWriter ) and another (http.Request ) to get any data or value from the request. With this second service we can read GET parameters with r.URL.Query().Get("keyword") or POST parameters in request body with r.Body.
 ```
 func (mux *ServeMux) HandleFunc(pattern string, handler func(ResponseWriter, *Request))
 ```
-HandleFunc registers the handler function for the given pattern in the DefaultServeMux.Handler func has two parameters. One to handle the response (http.ResponseWriter ) and another (http.Request ) to get any data or value from the request. With this second service we can read GET parameters with r.URL.Query().Get("keyword") or POST parameters in request body with r.Body.
+
 ```
 mux := http.NewServeMux()
 mux.HandleFunc("/hello", func(rw http.ResponseWriter, req *http.Request) {
@@ -96,12 +99,13 @@ mux.HandleFunc("/hello", func(rw http.ResponseWriter, req *http.Request) {
 })
 ```
 
-##### func (*ServeMux) ServeHTTP
+#### func (*ServeMux) ServeHTTP
+ServeHTTP dispatches the request to the handler whose pattern most closely matches the request URL.
 ```
 func (mux *ServeMux) ServeHTTP(w ResponseWriter, r *Request)
 ```
-ServeHTTP dispatches the request to the handler whose pattern most closely matches the request URL.
-##### type Server
+
+#### type Server
 A Server defines parameters for running an HTTP server. The zero value for Server is a valid configuration.
 ```
 type Server struct {
@@ -112,21 +116,23 @@ type Server struct {
     ...
 }
 ```
-##### func (srv *Server) ListenAndServe() error
+#### func (srv *Server) ListenAndServe() error
 ListenAndServe listens on the TCP network address srv.Addr and then calls Serve to handle requests on incoming connections. Accepted connections are configured to enable TCP keep-alives.
 
 If srv.Addr is blank, ":http" is used.
 ListenAndServe always returns a non-nil error. After Shutdown or Close, the returned error is ErrServerClosed.
-##### func ListenAndServe
-```
-func ListenAndServe(addr string, handler Handler) error
-```
+#### func ListenAndServe
 ListenAndServe listens on the TCP network address addr and then calls Serve with handler to handle requests on incoming connections. Accepted connections are configured to enable TCP keep-alives.
 The handler is typically nil, in which case the DefaultServeMux is used.
 ListenAndServe always returns a non-nil error.
+```
+func ListenAndServe(addr string, handler Handler) error
+```
+
 
 Example: HTTP Server
-Registering handlers
+##### Registering handlers
+
 
 ```
 package main
@@ -262,7 +268,7 @@ Question:
 Mux is passed to ListenAndServe(). How does the mux implements Hander interface?
 > http.NewServeMux() returns a pointer to a serve mux (*ServeMux) and this type *ServeMux has a ServeHttp method.Therefore, any value of type *ServeMux will essentially implement the Handler interface Since ListenAndServe wants a handler of type Handler and any value of type *ServeMux implements the Handler interface, we can pass *ServeMux to the ListenAndServe function
 
-##### Default multiplexer
+#### Default multiplexer
 To make things simpler, there’s a ready-to-use multiplexer DefaultServeMux. You don't need to use an explicit ServeMux. The Handle and HandleFunc methods available in a ServeMux are also exposed as global functions in the net/http package for this purpose — you can use them the same way!
 The DefaultServeMux is just a plain ol' ServeMux like we've already been using, which gets instantiated by default when the HTTP package is used.
 
@@ -321,7 +327,7 @@ func main() {
  Output of the above code is similar to the HTTP Server above.
  Generally you shouldn't use the DefaultServeMux because it poses a security risk.
 
-Because the DefaultServeMux is stored in a global variable, any package is able to access it and register a route – including any third-party packages that your application imports. If one of those third-party packages is compromised, they could use the DefaultServeMux to expose a malicious handler to the web.
+Because the DefaultServeMux is stored in a global variable, any package is able to access it and register a route including any third-party packages that your application imports. If one of those third-party packages is compromised, they could use the DefaultServeMux to expose a malicious handler to the web.
 
 Question:
 How does DefaultServeMux get set when the second argument to ListenAndServe() is nil?
@@ -344,12 +350,12 @@ func (sh serverHandler) ServeHTTP(rw ResponseWriter, req *Request) {
 	handler.ServeHTTP(rw, req)
 }
 ```
-##### type HandlerFunc
+#### type HandlerFunc
 The HandlerFunc type is an adapter to allow the use of ordinary functions as HTTP handlers. If f is a function with the appropriate signature, HandlerFunc(f) is a Handler that calls f.ie. If you want to use a standalone function without declaring a struct,http.Handlerfunc comes to the rescue.
 ```
 type HandlerFunc func(ResponseWriter, *Request)
 ```
-##### func (HandlerFunc) ServeHTTP
+#### func (HandlerFunc) ServeHTTP
 ```
 type HandlerFunc func(ResponseWriter, *Request)
 
@@ -383,3 +389,4 @@ func main() {
 ```
 Output:
 Both http://localhost:8080/ and http://localhost:8080/hello will print "Hello, How you doing?"
+
