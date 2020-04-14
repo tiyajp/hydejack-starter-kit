@@ -191,8 +191,10 @@ func main() {
 	// server.ListenAndServe()
 }
 ```
+
 Output:
 It will print 
+
 ```
 Starting the server on :8080
 ``` 
@@ -205,10 +207,12 @@ and http://localhost:8080/hello will give
 Welcome to HTTP server Mux HandleFunc
 Hello, How you doing?
 ```
+
 Question:
 What does mux.Handle() actually do? Is it responsible for calling Handler's ServeHTTP?
 > No, It will not call Handler's ServeHTTP.Handle registers the handler for the given pattern.If a handler already exists for pattern, Handle panics.
 See the code snippet from source code:
+
 ```
 type ServeMux struct {
 	mu    sync.RWMutex
@@ -266,10 +270,12 @@ func appendSorted(es []muxEntry, e muxEntry) []muxEntry {
 	return es
 }
 ```
+
 Question:
 What does mux.HandleFunc() actually do?
 > HandleFunc registers the handler function for the given pattern.
 See the code snippet from source code:
+
 ```
 // HandleFunc registers the handler function for the given pattern.
 func (mux *ServeMux) HandleFunc(pattern string, handler func(ResponseWriter, *Request)) {
@@ -290,17 +296,19 @@ func (f HandlerFunc) ServeHTTP(w ResponseWriter, req *Request) {
     f(w, req)
 }
 ```
+
 The call to the http.HandleFunc() function "converts" the provided function to the HandleFunc() type which has a ServeHTTP method and thus implements Handler interface and then calls the (mux *ServeMux) Handle() function similar to what happens when we call the Handle() function.Thereby registering the handler against given pattern.
 
 Question:
 Mux is passed to ListenAndServe(). How does the mux implements Hander interface?
 > http.NewServeMux() returns a pointer to a serve mux (*ServeMux) and this type *ServeMux has a ServeHttp method.Therefore, any value of type *ServeMux will essentially implement the Handler interface Since ListenAndServe wants a handler of type Handler and any value of type *ServeMux implements the Handler interface, we can pass *ServeMux to the ListenAndServe function
 
-#### Default multiplexer
+### Default multiplexer
 To make things simpler, there’s a ready-to-use multiplexer DefaultServeMux. You don't need to use an explicit ServeMux. The Handle and HandleFunc methods available in a ServeMux are also exposed as global functions in the net/http package for this purpose — you can use them the same way!
 The DefaultServeMux is just a plain ol' ServeMux like we've already been using, which gets instantiated by default when the HTTP package is used.
 
 Here's the relevant line from the Go source:
+
 ```
 // ServeMux also takes care of sanitizing the URL request path,
 // redirecting any request containing . or .. elements or repeated slashes
@@ -325,7 +333,9 @@ var DefaultServeMux = &defaultServeMux
 
 var defaultServeMux ServeMux
 ```
+
 Example:
+
 ```
 package main
 
@@ -352,6 +362,7 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 ```
+
  Output of the above code is similar to the HTTP Server above.
  Generally you shouldn't use the DefaultServeMux because it poses a security risk.
 
@@ -361,6 +372,7 @@ Question:
 How does DefaultServeMux get set when the second argument to ListenAndServe() is nil?
 
 The following code snippet has the answer:
+
 ```
 // serverHandler delegates to either the server's Handler or
 // DefaultServeMux and also handles "OPTIONS *" requests.
@@ -378,12 +390,16 @@ func (sh serverHandler) ServeHTTP(rw ResponseWriter, req *Request) {
 	handler.ServeHTTP(rw, req)
 }
 ```
-#### type HandlerFunc
+
+### type HandlerFunc
 The HandlerFunc type is an adapter to allow the use of ordinary functions as HTTP handlers. If f is a function with the appropriate signature, HandlerFunc(f) is a Handler that calls f.ie. If you want to use a standalone function without declaring a struct,http.Handlerfunc comes to the rescue.
+
 ```
 type HandlerFunc func(ResponseWriter, *Request)
 ```
-#### func (HandlerFunc) ServeHTTP
+
+### func (HandlerFunc) ServeHTTP
+
 ```
 type HandlerFunc func(ResponseWriter, *Request)
 
@@ -392,9 +408,11 @@ func (f HandlerFunc) ServeHTTP(w ResponseWriter, req *Request) {
     f(w, req)
 }
 ```
+
 ServeHTTP calls f(w, r).
 
 Example:
+
 ```
 package main
 
@@ -415,6 +433,7 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 ```
+
 Output:
 Both http://localhost:8080/ and http://localhost:8080/hello will print "Hello, How you doing?"
 
