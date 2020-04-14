@@ -10,7 +10,8 @@ noindex: true
 ![](assets/img/server.png)
 
 
-#### HTTP Server
+### HTTP Server
+
 Before going to http Server, Let's understand what a server is.
 
 Web Server
@@ -28,6 +29,7 @@ Writing a basic HTTP server is easy using the net/http package.
 A fundamental concept in net/http servers is handlers. A handler is an object implementing the http.Handler interface. 
 
 ListenAndServe starts an HTTP server with a given address and handler. The handler is usually nil, which means to use DefaultServeMux. Handle and HandleFunc add handlers to DefaultServeMux:
+
 ```
 http.Handle("/foo", fooHandler)
 
@@ -37,6 +39,7 @@ http.HandleFunc("/bar", func(w http.ResponseWriter, r *http.Request) {
 
 log.Fatal(http.ListenAndServe(":8080", nil))
 ```    
+
 A basic understanding of the following concepts are neccessary for Web Server Creation
 * type Handler 
 * type ServeMux
@@ -49,45 +52,61 @@ A basic understanding of the following concepts are neccessary for Web Server Cr
 * func ListenAndServe(addr string, handler Handler) error
 * type HandlerFunc
    * func (f HandlerFunc) ServeHTTP(w ResponseWriter, r *Request)
-#### type Handler
+   
+### type Handler
+
 A Handler responds to an HTTP request.
+
 ```
 type Handler interface {
     ServeHTTP(ResponseWriter, *Request)
 }
 ```
-Handlers are responsible for writing response headers and bodies. Almost any object can be a handler, so long as it satisfies the http.Handler interface. 
-#### type ServeMux
+
+Handlers are responsible for writing response headers and bodies. Almost any object can be a handler, so long as it satisfies the http.Handler interface.
+
+### type ServeMux
+
 ServeMux is an HTTP request multiplexer.A mux is used for routing. It matches the URL of each incoming request against a list of registered patterns and calls the handler for the pattern that most closely matches the URL.
 ServeMux also takes care of sanitizing the URL request path and the Host header, stripping the port number and redirecting any request containing . or .. elements or repeated slashes to an equivalent, cleaner URL.
-#### func NewServeMux
+
+### func NewServeMux
+
 NewServeMux allocates and returns a new ServeMux.
 
 ```
 func NewServeMux() *ServeMux
 ```
-#### func (*ServeMux) Handle
+
+### func (*ServeMux) Handle
+
 Handle registers the handler for the given pattern in the DefaultServeMux. If a handler already exists for pattern, Handle panics.
 We can simply use a struct to provide the implementation. 
+
 ```
 func (mux *ServeMux) Handle(pattern string, handler Handler)
 ```
 
 
 For example:
+
 ```
 func (h home) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 	rw.Write([]byte("Welcome to home"))
 }
 ```
+
 Then attach this to the multiplexer as follows:
+
 ```
 mux := http.NewServeMux()
 mux.Handle("/", home{})
 ```
 
-#### func (*ServeMux) HandleFunc
+### func (*ServeMux) HandleFunc
+
 HandleFunc registers the handler function for the given pattern in the DefaultServeMux.Handler func has two parameters. One to handle the response (http.ResponseWriter ) and another (http.Request ) to get any data or value from the request. With this second service we can read GET parameters with r.URL.Query().Get("keyword") or POST parameters in request body with r.Body.
+
 ```
 func (mux *ServeMux) HandleFunc(pattern string, handler func(ResponseWriter, *Request))
 ```
@@ -99,14 +118,18 @@ mux.HandleFunc("/hello", func(rw http.ResponseWriter, req *http.Request) {
 })
 ```
 
-#### func (*ServeMux) ServeHTTP
+### func (*ServeMux) ServeHTTP
+
 ServeHTTP dispatches the request to the handler whose pattern most closely matches the request URL.
+
 ```
 func (mux *ServeMux) ServeHTTP(w ResponseWriter, r *Request)
 ```
 
-#### type Server
+### type Server
+
 A Server defines parameters for running an HTTP server. The zero value for Server is a valid configuration.
+
 ```
 type Server struct {
     // Addr optionally specifies the TCP address for the server to listen on,
@@ -116,12 +139,16 @@ type Server struct {
     ...
 }
 ```
-#### func (srv *Server) ListenAndServe() error
+
+### func (srv *Server) ListenAndServe() error
+
 ListenAndServe listens on the TCP network address srv.Addr and then calls Serve to handle requests on incoming connections. Accepted connections are configured to enable TCP keep-alives.
 
 If srv.Addr is blank, ":http" is used.
 ListenAndServe always returns a non-nil error. After Shutdown or Close, the returned error is ErrServerClosed.
-#### func ListenAndServe
+
+### func ListenAndServe
+
 ListenAndServe listens on the TCP network address addr and then calls Serve with handler to handle requests on incoming connections. Accepted connections are configured to enable TCP keep-alives.
 The handler is typically nil, in which case the DefaultServeMux is used.
 ListenAndServe always returns a non-nil error.
@@ -131,7 +158,8 @@ func ListenAndServe(addr string, handler Handler) error
 
 
 Example: HTTP Server
-##### Registering handlers
+
+### Registering handlers
 
 
 ```
