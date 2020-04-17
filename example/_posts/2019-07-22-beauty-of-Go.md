@@ -50,7 +50,7 @@ Go is a systems programming language. Go really shines for stuff such as cloud s
 
 ### Strengths
 
- #### #1 Go is easy to learn
+#### #1 Go is easy to learn
 >You can learn most of Go's syntax in a couple of hours with the "Tour of Go".Because of Go's simplicity, Go programs are very readable.Go makes it easier to write correct, clear and efficient code.Go has marvelous documentation, and most of the advanced topics have already been covered on their blog: The Go Programming Language Blog.
 
 Go intentionally leaves out many features of modern OOP languages:
@@ -62,6 +62,7 @@ Go intentionally leaves out many features of modern OOP languages:
 1.No generics.
 1. No exceptions.
 
+
 ####  #2 Portable
 > Go is a compiled language.Since the code gets directly compiled to machine code, therefore, the binaries become portable. Portability here means that you can pick up the binary from your machine (let’s say Linux, x86–64) and directly run that on your server (if your server is also running Linux on a x86–64 architecture).
 
@@ -71,14 +72,19 @@ Compared specifically to Java, Go “compiles to small statically linked binarie
 
 This has a huge benefit for deployment of your programs on multiple machines in a data center. If you have 100 machines in your data center, you can simply ‘scp’ your program binary to all of them, as long as the binary is compiled for the same OS and instruction set architecture your machines run on. You don’t need to care about which version of Linux they are running. There is no need for checking/managing dependencies. The binaries simply run and all your services are up 
 
+
 ####  #3 Statically typed with no implicit conversions
 > Go is statically typed. This means that you need to declare types for all your variables and your function arguments (and return variables) at compile time. Although this may sound inconvenient, this is a great advantage since a lot of errors will be found at compile time itself. This factor plays a very big role when your team size increases, since declared types make functions and libraries more readable and more easier to understand.
+
 #### #4 Fast Compilation
 > Go code compiles really fast, so you don’t need to keep waiting for your code to compile.
+
 #### #5 High Execution Speed
 >Go compiles to a native executable.ie Go code gets directly compiled to machine code, depending upon the OS (Linux/Windows/Mac) and the CPU instruction set architecture (x86, x86–64, arm etc) of the machine the code is being compiled upon. So, it runs really fast.
+
 #### #6 Code separation and efficient management of dependencies.
  > Programs are constructed from packages that offer clear code separation and allow efficient management of dependencies. The package mechanism is perhaps the single most well-designed feature of the language, and certainly one of the most overlooked.
+ 
 #### #7 Structurally typed interfaces
 > Interfaces enable loosely coupled systems.Structurally typed interfaces provide runtime polymorphism through dynamic dispatch.A type implements an interface by implementing its methods. No explicit declaration is required.This is checked by the compiler automatically at compile time.
 
@@ -98,6 +104,7 @@ There are two benefits of this approach:
 >When a Go program executes what looks like a blocking I/O operation, the Go runtime actually suspends the goroutine and resumes it when an event indicates that some result is available. In the meantime other goroutines have been scheduled for execution. We therefore have the scalability benefits of asynchronous programming with a synchronous programming model.
 
 >Channels are how goroutines should communicate: they provide a convenient programming model to send and receive data between goroutines without having to rely on fragile low level synchronization primitives. 
+
 #### #9 Great standard libraries
 > The Go standard library is really great, particularly for everything related to network protocols or API development: http client and server, crypto, archive formats, compressions, sending email, etc.
 Some of them are:
@@ -111,12 +118,16 @@ Some of them are:
 1. html/templates-HTML templating library
 
 1. io/ioutil-Implements I/O utility functions
+
 #### #10 Go is garbage collected
 > Unlike C, you don’t need to remember to free up pointers or worry about dangling pointers in Go. The garbage collector automatically does this job. Garbage collection protects against memory leaks. The collection has very low latency. 
+
 #### #11 No exceptions, handle errors yourself
 > Although, it can also be considered as a drawback of Go, it is still good in a way that it forces developers to handle basic errors like ‘couldn’t open file’ etc rather than letting them wrap up all of their code in a try catch block. This also puts pressure on developers to actually think about what needs to be done to handle these failure scenarios.
+
 #### #12 Language defined source code format
 > Some of the most heated debates has happened around the definition of a code format for the team. Go solves this by defining a canonical format for Go code. The gofmt tool reformats your code and has no options. You have only one style guide that everyone follows.
+
 #### #13 Amazing tooling
 >One of the best aspects about Go is its tooling. Some of them are:
 
@@ -130,21 +141,26 @@ Some of them are:
 Godoc parses your Go source code including comments and produces its documentation in HTML or plain text format. Through godoc’s web interface, you can then see documentation tightly coupled with the code it documents. You can navigate from a function’s documentation to its implementation with one click.
 
 1. Go test: Go comes with a great test framework in its standard library. It has support for parallel testing, benchmarks, and contains a lot of utilities to easily test network clients and servers.
+
 #### #14 Static code analysis
 
 > Go heavily relies on static code analysis. Examples include godoc for documentation, gofmt for code formatting, golint for code style linting, and many others.
 Those tools are commonly implemented as stand-alone command line applications and integrate easily with any coding environment.
 Static code analysis isn’t actually something new to modern programming, but Go sort of brings it to the absolute. Also, it gives you a feeling of safety, as though someone is covering your back.
+
 #### #15 Race condition detection
 > Race conditions happen when several concurrent operations finish in an unpredicted order. It might lead to a huge number of bugs, which are particularly hard to chase down. 
 Go has quite a powerful tool to hunt those race conditions down. It is fully integrated into Go’s toolchain.
+
 #### #16 Reflection
 Code reflection is essentially an ability to sneak under the hood and access different kinds of meta-information about your language constructs, such as variables or functions.Given that Go is a statically typed language, it’s exposed to a number of various limitations when it comes to more loosely typed abstract programming.
 > However, there are still cases in which you can’t possibly know what sort of data you are facing.In order to pull that off, you need a tool to examine all the data in runtime that acts differently depending on its type and structure. Reflection to rescue! Go has a first-class reflect package to enable your code to be as dynamic as it would be in a language like Javascript.
 
 Note that you only use it when there is no simpler way.
+
 #### #17 Defer statement, to avoid forgetting to clean up
 > The defer statement serves a purpose similar to finally in Java: execute some clean up code at the end of the current function, no matter how this function is exited. The interesting thing with defer is that it's not linked to a block of code, and can appear at any time. This allows the clean up code to be written as close as possible to the code that creates what needs to be cleaned up
+
 #### #18  User defined types
 > Go has first-class support for new types, i.e. types that take an existing type and give it a separate identity, distinct from the original one. 
 
