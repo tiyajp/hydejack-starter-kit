@@ -59,7 +59,7 @@ Go intentionally leaves out many features of modern OOP languages:
 1. Does not support inheritance. That will make code easy to modify. In other languages like Java/Python, if the class ABC inherits class XYZ and you make some changes in class XYZ, then that may produce some side effects in other classes that inherit XYZ. By removing inheritance, Go makes it easy to understand the code also (as there is no super class to look at while looking at a piece of code).
 1. No constructors.
 1. No annotations.
-1.No generics.
+1. No generics.
 1. No exceptions.
 
 
