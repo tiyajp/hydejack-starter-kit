@@ -8,6 +8,7 @@ noindex: true
 ---
 
 
+
 ### Beauty of Go
 
 ### Introduction
@@ -27,21 +28,21 @@ Rob Pike mentions the purpose for the Go programming language:
 
 Issues that were plaguing the software engineering horizon at Google were:
 
- a) slow builds(builds would sometime take as long as an hour to complete)
- b) uncontrolled dependencies
- c) each programmer using a different subset of the language
- d) poor program understanding (code hard to read, poorly documented, and so on)
- e) duplication of effort
- f) cost of updates
- g) version skew
- h) difficulty of writing automatic tools
- i) cross-language builds
+ 1. slow builds(builds would sometime take as long as an hour to complete)
+ 1.uncontrolled dependencies
+ 1.each programmer using a different subset of the language
+ 1. poor program understanding (code hard to read, poorly documented, and so on)
+ 1. duplication of effort
+ 1. cost of updates
+ 1. version skew
+ 1. difficulty of writing automatic tools
+ 1. cross-language builds
  
 For Go to succeed, Go must solve these problems:
 
-a) Go must work at scale, for large teams of programmers working on them, for programs with large numbers of dependencies.
- b) Go must be familiar, roughly C-like. Google needs to get programmers productive quickly in Go, means that the language cannot be too radical.
- c) Go must be modern. It should have features like concurrency so that programs can make efficient use of multi core machines. It should have built-in networking and web server libraries so that it aids modern development.
+1. Go must work at scale, for large teams of programmers working on them, for programs with large numbers of dependencies.
+ 1. Go must be familiar, roughly C-like. Google needs to get programmers productive quickly in Go, means that the language cannot be too radical.
+ 1. Go must be modern. It should have features like concurrency so that programs can make efficient use of multi core machines. It should have built-in networking and web server libraries so that it aids modern development.
  
 ### Target Audience
 
@@ -54,12 +55,12 @@ Go is a systems programming language. Go really shines for stuff such as cloud s
 
 Go intentionally leaves out many features of modern OOP languages:
 
-a) No classes. Every thing is divided into packages only. Go has only structs instead of classes.
-b) Does not support inheritance. That will make code easy to modify. In other languages like Java/Python, if the class ABC inherits class XYZ and you make some changes in class XYZ, then that may produce some side effects in other classes that inherit XYZ. By removing inheritance, Go makes it easy to understand the code also (as there is no super class to look at while looking at a piece of code).
-c) No constructors.
-d) No annotations.
-e) No generics.
-f) No exceptions.
+1. No classes. Every thing is divided into packages only. Go has only structs instead of classes.
+1. Does not support inheritance. That will make code easy to modify. In other languages like Java/Python, if the class ABC inherits class XYZ and you make some changes in class XYZ, then that may produce some side effects in other classes that inherit XYZ. By removing inheritance, Go makes it easy to understand the code also (as there is no super class to look at while looking at a piece of code).
+1. No constructors.
+1. No annotations.
+1.No generics.
+1. No exceptions.
 
 ####  #2 Portable
 > Go is a compiled language.Since the code gets directly compiled to machine code, therefore, the binaries become portable. Portability here means that you can pick up the binary from your machine (let’s say Linux, x86–64) and directly run that on your server (if your server is also running Linux on a x86–64 architecture).
@@ -101,15 +102,15 @@ There are two benefits of this approach:
 > The Go standard library is really great, particularly for everything related to network protocols or API development: http client and server, crypto, archive formats, compressions, sending email, etc.
 Some of them are:
 
-a) net/http-rovides HTTP client and server implementations
+1. net/http-rovides HTTP client and server implementations
 
-b) database/sql-For interaction with SQL databases
+1.database/sql-For interaction with SQL databases
 
-c) encoding/json-JSON is treated as a first class member of the standard language :)
+1. encoding/json-JSON is treated as a first class member of the standard language :)
 
-d) html/templates-HTML templating library
+1. html/templates-HTML templating library
 
-e) io/ioutil-Implements I/O utility functions
+1. io/ioutil-Implements I/O utility functions
 #### #10 Go is garbage collected
 > Unlike C, you don’t need to remember to free up pointers or worry about dangling pointers in Go. The garbage collector automatically does this job. Garbage collection protects against memory leaks. The collection has very low latency. 
 #### #11 No exceptions, handle errors yourself
