@@ -90,7 +90,7 @@ This has a huge benefit for deployment of your programs on multiple machines in 
 
 This means that a part of your code can just rely on an interface type and doesn’t really care about who implements the interface or how the interface is actually implemented. Your main/controller function can then supply a dependency which satisfies the interface (implements all the functions in the interface) to that code. This also enables a really clean architecture for unit testing (through dependency injection). Now, your test code can just inject a mock implementation of the interface required by the code to be able to test if it’s doing its job correctly or not.
 
-![](assets/img/compare.png)
+![](assets/img/comp.png)
 
 
 #### #8 Easy concurrent programming with goroutines and channels
