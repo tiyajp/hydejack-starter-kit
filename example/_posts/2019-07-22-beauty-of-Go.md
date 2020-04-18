@@ -184,3 +184,8 @@ Other benefits are :
 1. Goroutines come with built-in primitives to communicate safely between themselves (channels).
 1. Goroutines allow you to avoid having to resort to mutex locking when sharing data structures.
 1. Also, goroutines and OS threads do not have 1:1 mapping. A single goroutine can run on multiple threads. Goroutines are multiplexed into small number of OS threads.
+
+### Some Companies using Go
+
+![](/assets/img/companies.png)
+
