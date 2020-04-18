@@ -7,8 +7,6 @@ image: /assets/img/http.png
 noindex: true
 ---
 
-![](/assets/img/server.png)
-
 
 ### HTTP Server
 
@@ -20,6 +18,8 @@ Web Server
 1) On the hardware side, a web server is a computer that stores web server software and a website's component files (e.g. HTML documents, images, CSS stylesheets, and JavaScript files). It is connected to the Internet and supports physical data interchange with other devices connected to the web.
 
 2) On the software side, a web server includes several parts that control how web users access hosted files, at minimum an HTTP server. An HTTP server is a piece of software that understands URLs (web addresses) and HTTP (the protocol your browser uses to view webpages). It can be accessed through the domain names (like mozilla.org) of websites it stores, and delivers their content to the end-user's device. This intercommunication is done using Hypertext Transfer Protocol (HTTP).
+
+![](/assets/img/server.png)
 
 > At the most basic level, whenever a browser needs a file which is hosted on a web server, the browser requests the file via HTTP. When the request reaches the correct web server (hardware), the HTTP server (software) accepts request, finds the requested document (if it doesn't then a 404 response is returned), and sends it back to the browser, also through HTTP.
 
