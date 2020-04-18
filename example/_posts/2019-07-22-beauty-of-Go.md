@@ -29,8 +29,8 @@ Rob Pike mentions the purpose for the Go programming language:
 Issues that were plaguing the software engineering horizon at Google were:
 
  1. slow builds(builds would sometime take as long as an hour to complete)
- 1.uncontrolled dependencies
- 1.each programmer using a different subset of the language
+ 1. uncontrolled dependencies
+ 1. each programmer using a different subset of the language
  1. poor program understanding (code hard to read, poorly documented, and so on)
  1. duplication of effort
  1. cost of updates
@@ -89,6 +89,9 @@ This has a huge benefit for deployment of your programs on multiple machines in 
 > Interfaces enable loosely coupled systems.Structurally typed interfaces provide runtime polymorphism through dynamic dispatch.A type implements an interface by implementing its methods. No explicit declaration is required.This is checked by the compiler automatically at compile time.
 
 This means that a part of your code can just rely on an interface type and doesn’t really care about who implements the interface or how the interface is actually implemented. Your main/controller function can then supply a dependency which satisfies the interface (implements all the functions in the interface) to that code. This also enables a really clean architecture for unit testing (through dependency injection). Now, your test code can just inject a mock implementation of the interface required by the code to be able to test if it’s doing its job correctly or not.
+
+![](assets/img/compare.png)
+
 
 #### #8 Easy concurrent programming with goroutines and channels
 > Concurrency, by its design, enables you to efficiently use your CPU horsepower. Even if your processor just has 1 core, concurrency’s design enables you to use that one core efficiently. 
