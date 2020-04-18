@@ -10,5 +10,5 @@ slug: example
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  Briefing out some of the Go related concepts.
+Compilation of some of the Go related concepts covered while learning Go.
 ---
