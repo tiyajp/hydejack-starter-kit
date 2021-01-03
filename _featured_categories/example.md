@@ -10,6 +10,6 @@ slug: example
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-   Compilation of some of the Go related concepts covered while learning Go.
+   Summary of some of the Go related concepts covered while learning Go.
 
 ---
