@@ -38,7 +38,7 @@ Other slices that share the same underlying array will see those changes.
 
 https://tour.golang.org/moretypes/8
 
-#### Slice literals
+### Slice literals
 
 A slice literal is like an array literal without the length.
 
@@ -56,7 +56,7 @@ And this creates the same array as above, then builds a slice that references it
 https://tour.golang.org/moretypes/9
 
 
-#### Slice length and capacity
+### Slice length and capacity
 
 - A slice has both a length and a capacity.
 - The length of a slice is the number of elements it contains.
@@ -66,10 +66,11 @@ https://tour.golang.org/moretypes/9
 
 https://tour.golang.org/moretypes/11 
 
->Creating a slice with make
->Slices can be created with the built-in make function; this is how you create dynamically-sized arrays.
+> Creating a slice with make
+> Slices can be created with the built-in make function; this is how you create dynamically-sized arrays.
 
 The make function allocates a zeroed array and returns a slice that refers to that array:
+
 ```
 a := make([]int, 5)  // len(a)=5
 To specify a capacity, pass a third argument to make:
@@ -82,12 +83,14 @@ b = b[1:]      // len(b)=4, cap(b)=4
 
 https://tour.golang.org/moretypes/13
 
-#### Appending to a slice
+### Appending to a slice
 
 It is common to append new elements to a slice, and so Go provides a built-in append function. The documentation of the built-in package describes append.
+
 ```
 func append(s []T, vs ...T) []T
 ```
+
 The first parameter s of append is a slice of type T, and the rest are T values to append to the slice.
 
 The resulting value of append is a slice containing all the elements of the original slice plus the provided values.
@@ -101,8 +104,11 @@ If the backing array of s is too small to fit all the given values a bigger arra
 When ranging over a slice, two values are returned for each iteration. The first is the index, and the second is a copy of the element at that index.
 https://tour.golang.org/moretypes/16
 
+
 ### #5 Maps
+
 >The make function returns a map of the given type, initialized and ready for use.
+
 ```
 m[key] = elem
 //Retrieve an element:
@@ -117,6 +123,7 @@ elem, ok = m[key]
 //If key is in m, ok is true. If not, ok is false.
 // If key is not in the map, then elem is the zero value for the map's element type.
 ```
+
 https://tour.golang.org/moretypes/22
 
 ###  Function values
@@ -135,7 +142,7 @@ https://tour.golang.org/moretypes/25
 
 ### Methods and interfaces
 
-#### Methods
+### Methods
 
 > Go does not have classes. However, you can define methods on types.
 A method is a function with a special receiver argument.
@@ -147,20 +154,20 @@ Methods are functions
 
 https://tour.golang.org/methods/3
 
-#### Pointer receivers
+### Pointer receivers
 > Methods with pointer receivers can modify the value to which the receiver points.
 
 Since methods often need to modify their receiver, pointer receivers are more common than value receivers.
 With a value receiver, the Scale method operates on a copy of the original Vertex value. (This is the same behavior as for any other function argument
 
 
-#### Methods and pointer indirection
+### Methods and pointer indirection
 
 - functions with a pointer argument must take a pointer:
 - while methods with pointer receivers take either a value or a pointer as the receiver when they are called.
 - methods with value receivers take either a value or a pointer as the receiver when they are called:
 
-#### Choosing a value or pointer receiver
+### Choosing a value or pointer receiver
 
 There are two reasons to use a pointer receiver.
 
@@ -172,7 +179,7 @@ There are two reasons to use a pointer receiver.
 Interfaces are implemented implicitly
 A type implements an interface by implementing its methods. There is no explicit declaration of intent, no "implements" keyword.
 
-#### Interface values
+### Interface values
 
 Under the hood, interface values can be thought of as a tuple of a value and a concrete type:
 
@@ -182,7 +189,7 @@ Under the hood, interface values can be thought of as a tuple of a value and a c
 - An interface value holds a value of a specific underlying concrete type.
 - Calling a method on an interface value executes the method of the same name on its underlying type.
 
-#### Interface values with nil underlying values
+### Interface values with nil underlying values
 
 > If the concrete value inside the interface itself is nil, the method will be called with a nil receiver.
 
