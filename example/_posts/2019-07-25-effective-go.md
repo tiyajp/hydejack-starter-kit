@@ -127,7 +127,7 @@ v := make([]int, 100)
 ```
 Remember that make applies only to maps, slices and channels and does not return a pointer. To obtain an explicit pointer allocate with new or take the address of a variable explicitly.
 
-### Arrays
+## Arrays
 
 Arrays are useful when planning the detailed layout of memory and sometimes can help avoid allocation, but primarily they are a building block for slices, the subject of the next section. To lay the foundation for that topic, here are a few words about arrays.
 
@@ -183,11 +183,12 @@ func (m MyString) String() string {
 }
 ```
 ## Initialization
+
 ### The init function 
 Besides initializations that cannot be expressed as declarations, a common use of init functions is to verify or repair correctness of the program state before real execution begins.
 
-### Methods
-## Pointers vs. Values 
+## Methods
+### Pointers vs. Values 
 The rule about pointers vs. values for receivers is that value methods can be invoked on pointers and values, but pointer methods can only be invoked on pointers.
 
 This rule arises because pointer methods can modify the receiver; invoking them on a value would cause the method to receive a copy of the value, so any modifications would be discarded. The language therefore disallows this mistake.
