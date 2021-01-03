@@ -111,18 +111,24 @@ https://tour.golang.org/moretypes/16
 
 ```
 m[key] = elem
-//Retrieve an element:
-
-elem = m[key]
-//Delete an element:
-
-delete(m, key)
-//Test that a key is present with a two-value assignment:
-
-elem, ok = m[key]
-//If key is in m, ok is true. If not, ok is false.
-// If key is not in the map, then elem is the zero value for the map's element type.
 ```
+Retrieve an element:
+
+```
+elem = m[key]
+```
+Delete an element:
+
+```
+delete(m, key)
+```
+Test that a key is present with a two-value assignment:
+
+```
+elem, ok = m[key]
+```
+If key is in m, ok is true. If not, ok is false.
+If key is not in the map, then elem is the zero value for the map's element type.
 
 https://tour.golang.org/moretypes/22
 
